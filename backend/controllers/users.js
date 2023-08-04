@@ -124,11 +124,11 @@ const login = (req, res, next) => {
     .then((isValidPassword) => {
       if (!isValidPassword) throw new UnauthorizedError('Неправильные почта или пароль');
       const token = jwt.sign({ _id: dataBaseUser._id }, 'secret-key', { expiresIn: '7d' });
-      // res.cookie('jwt', token, {
-      //   maxAge: 3600000 * 24 * 7,
-      //   httpOnly: true,
-      //   sameSite: true,
-      // }).send({ token });
+      res.cookie('jwt', token, {
+        maxAge: 3600000 * 24 * 7,
+        httpOnly: true,
+        sameSite: true,
+      }).send({ token });
       console.log('аутентификация успешна');
       return res.status(200).send({ token });
     })

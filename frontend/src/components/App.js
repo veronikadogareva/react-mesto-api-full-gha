@@ -48,6 +48,7 @@ function App() {
     tokenCheck();
   }, []);
   React.useEffect(() => {
+    console.log(localStorage);
     if (loggedIn) {
       api.getUserInfo()
         .then((data) => {
@@ -167,11 +168,10 @@ function App() {
   }
   function tokenCheck() {
     const jwt = localStorage.getItem('token');
-    console.log(jwt);
     if (jwt) {
       getContent(jwt)
         .then(user => {
-          setEmail(user.data.email);
+          setEmail(user.email);
           setLoggedIn(true);
           navigate('/');
         })

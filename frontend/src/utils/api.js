@@ -11,22 +11,23 @@ class Api {
     }
     return Promise.reject(`Ошибка: ${res.status}`);
   }
+
   _request(url, options) {
     return fetch(`${this._baseUrl}${url}`, options).then(this._checkResult)
   }
   getInitialCards() {
-    return this._request('cards', {
+    return this._request('/cards', {
       headers: this._headers
     });
   }
 
   getUserInfo() {
-    return this._request('users/me', {
+    return this._request('/users/me', {
       headers: this._headers
     });
   }
   patchUserInfo(data) {
-    return this._request('users/me', {
+    return this._request('/users/me', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -36,7 +37,7 @@ class Api {
     });
   }
   patchUserAvatar(avatar) {
-    return this._request('users/me/avatar', {
+    return this._request('/users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -45,7 +46,7 @@ class Api {
     });
   }
   postNewCard(data) {
-    return this._request('cards', {
+    return this._request('/cards', {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -55,19 +56,19 @@ class Api {
     });
   }
   deleteCard(cardId) {
-    return this._request(`cards/${cardId}`, {
+    return this._request(`/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     });
   }
   likeCard(cardId) {
-    return this._request(`cards/${cardId}/likes`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers
     });
   }
   dislikeCard(cardId) {
-    return this._request(`cards/${cardId}/likes`, {
+    return this._request(`/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers
     });
@@ -75,7 +76,7 @@ class Api {
 }
 const api = new Api({
   // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64/',
-  baseUrl: 'http://localhost:3001',
+  baseUrl: 'http://localhost:3000',
   headers: {
     authorization: '',
     'Content-Type': 'application/json'
