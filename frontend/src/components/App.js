@@ -155,7 +155,7 @@ function App() {
     authorize({ email, password })
       .then((data) => {
         if (data.token) {
-          localStorage.setItem('jwt', data.token);
+          localStorage.setItem('token', data.token);
           tokenCheck();
         }
       })
@@ -166,7 +166,8 @@ function App() {
       });
   }
   function tokenCheck() {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem('token');
+    console.log(jwt);
     if (jwt) {
       getContent(jwt)
         .then(user => {
