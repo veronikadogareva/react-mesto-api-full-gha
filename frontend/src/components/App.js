@@ -48,7 +48,6 @@ function App() {
     tokenCheck();
   }, []);
   React.useEffect(() => {
-    console.log(localStorage);
     if (loggedIn) {
       api.getUserInfo()
         .then((data) => {
@@ -57,7 +56,7 @@ function App() {
         .catch(console.error);
       api.getInitialCards()
         .then((data) => {
-          setCards(data);
+          setCards(data.reverse());
         })
         .catch(console.error);
     }
@@ -82,7 +81,7 @@ function App() {
     setIsInfoTooltipOpen(false);
   }
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     if (!isLiked) {
       api.likeCard(card._id)
         .then((newCard) => {
@@ -167,9 +166,9 @@ function App() {
       });
   }
   function tokenCheck() {
-    const jwt = localStorage.getItem('token');
-    if (jwt) {
-      getContent(jwt)
+    const token = localStorage.getItem('token');
+    if (token) {
+      getContent(token)
         .then(user => {
           setEmail(user.email);
           setLoggedIn(true);
@@ -182,7 +181,7 @@ function App() {
     }
   }
   function handleExit() {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('token');
     tokenCheck();
   }
   return (
