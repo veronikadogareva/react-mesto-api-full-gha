@@ -107,11 +107,11 @@ class Api {
 }
 const api = new Api({
   // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64/',
-  baseUrl: 'http://localhost:3001',
-  // headers: {
-  //   authorization: '',
-  //   'Content-Type': 'application/json'
-  // }
+  baseUrl: 'https://veronika.theplace.nomoreparties.co/',
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
+    'Content-Type': 'application/json'
+  }
 }); 
 
 export { api };

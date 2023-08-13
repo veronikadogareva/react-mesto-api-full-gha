@@ -5,6 +5,8 @@ const cors = require('cors');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+require('dotenv').config();
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
@@ -32,6 +34,11 @@ app.use(helmet());
 app.use(cors());
 app.use(cookieParser());
 app.use(requestLogger);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+}); 
 app.post('/signin', loginValidation, login);
 app.post('/signup', createUserValidation, createUser);
 app.use(auth);
