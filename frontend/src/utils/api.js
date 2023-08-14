@@ -107,7 +107,7 @@ class Api {
 }
 const api = new Api({
   // baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64/',
-  baseUrl: 'https://veronika.theplace.nomoreparties.co/',
+  baseUrl: 'https://api.veronika.theplace.nomoreparties.co/',
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token") || ""}`,
     'Content-Type': 'application/json'
