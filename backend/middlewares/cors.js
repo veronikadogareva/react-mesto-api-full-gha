@@ -15,7 +15,7 @@
 //   }
 //   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
 
-//   // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
+// Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
 //   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
 
 //   // Если это предварительный запрос, добавляем нужные заголовки
