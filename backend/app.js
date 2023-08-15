@@ -47,8 +47,7 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.post(
-  '/signin', loginValidation, login);
+app.post('/signin', loginValidation, login);
 // authLimiter,
 app.post('/signup', createUserValidation, createUser);
 // authLimiter,
