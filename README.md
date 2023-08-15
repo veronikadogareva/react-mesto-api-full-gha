@@ -18,7 +18,7 @@
 Адрес репозитория: https://github.com/veronikadogareva/react-mesto-api-full-gha
 ## Ссылки на проект
 
-IP-адрес 158.160.24.177
+IP-адрес <158.160.24.177>
 
 Frontend https://veronika.theplace.nomoreparties.co/
 
