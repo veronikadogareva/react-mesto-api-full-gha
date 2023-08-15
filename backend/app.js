@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 require('dotenv').config();
@@ -47,10 +47,12 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.post('/signin', 
-// authLimiter, 
+app.post('/signin',
+// authLimiter,
 loginValidation, login);
-app.post('/signup', authLimiter, createUserValidation, createUser);
+app.post('/signup',
+// authLimiter,
+createUserValidation, createUser);
 app.use(auth);
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
