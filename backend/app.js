@@ -26,12 +26,12 @@ const NotFoundError = require('./errors/NotFoundError');
 const app = express();
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 //* * ограничитель запросов */
-const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-  message: 'Слишком много запросов, пожалуйста попробуйте позже',
-});
+// const authLimiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   max: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+//   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+//   message: 'Слишком много запросов, пожалуйста попробуйте позже',
+// });
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -47,8 +47,10 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.post('/signin',  authLimiter, loginValidation, login);
-app.post('/signup',  authLimiter, createUserValidation, createUser);
+app.post('/signin', 
+// authLimiter, 
+loginValidation, login);
+app.post('/signup', authLimiter, createUserValidation, createUser);
 app.use(auth);
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
