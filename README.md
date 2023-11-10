@@ -16,6 +16,13 @@
 * код-стайл AirBnb
 
 Адрес репозитория: https://github.com/veronikadogareva/react-mesto-api-full-gha
+## Запуск проекта
+- Перед запуском, единожды, сделай установку npm i;
+- npm run dev - запуск проекта в режиме разработки;
+- npm run build - собирает проект для публикации;
+- npm run deploy - выгружает на GH-pages;
+- "predeploy": "npm run build";
+- "deploy": "gh-pages -d dist";
 ## Ссылки на проект
 
 IP 158.160.24.177
